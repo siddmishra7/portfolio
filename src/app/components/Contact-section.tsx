@@ -77,7 +77,7 @@ export default function Contact() {
             {/* Notification Banner */}
             {notification && (
                 <div
-                    className={`fixed flex gap-2 top-12 left-1/2 -translate-x-1/2 px-6 py-3 rounded shadow-lg text-white font-semibold z-50
+                    className={`fixed flex gap-2 top-24 left-1/2 -translate-x-1/2 px-6 py-3 rounded shadow-lg text-white font-semibold z-50
             ${notification.type === "success" ? "bg-green-600" : "bg-red-600"}
           `}
                     role="alert"
