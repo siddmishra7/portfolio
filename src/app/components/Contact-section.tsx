@@ -1,9 +1,10 @@
 "use client";
 
-import { BanIcon, CheckCircle, CircleCheck, Heart } from "lucide-react";
+import { BanIcon, CircleCheck, Heart } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import FloatingBlobs from "./Blobs";
+import Link from "next/link";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export default function Contact() {
             className="relative h-screen  bg-transparent text-white py-20 px-6 md:px-12"
         >
 
-<FloatingBlobs />
+            <FloatingBlobs />
 
             {/* Notification Banner */}
             {notification && (
@@ -85,18 +86,18 @@ export default function Contact() {
                     <div className="space-y-4 text-center md:text-left">
                         <div>
                             <strong>Phone:</strong>{" "}
-                            <a href="tel:+1234567890" className="text-cyan-300 hover:underline">
+                            <Link href="tel:+1234567890" className="text-cyan-300 hover:underline">
                                 +91 98993 21545
-                            </a>
+                            </Link>
                         </div>
                         <div>
                             <strong>Email:</strong>{" "}
-                            <a
+                            <Link
                                 href="mailto:your.email@example.com"
                                 className="text-cyan-300 hover:underline"
                             >
                                 siddmishralearning@gmail.com
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="flex items-center mt-8 gap-4">
@@ -104,7 +105,7 @@ export default function Contact() {
 
 
                             <div className="flex justify-center md:justify-end space-x-6 text-white ">
-                                <a
+                                <Link
                                     href="https://github.com/siddmishra7"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -113,8 +114,9 @@ export default function Contact() {
                                     title="GitHub profile"
                                 >
                                     <Image src="/gitHub.png" alt="GitHub profile" width={50} height={50} className="bg-white rounded-full p-1" />
-                                </a>
-                                <a
+                                </Link>
+                                <Link
+
                                     href="/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -123,8 +125,10 @@ export default function Contact() {
                                     title="X Profile"
                                 >
                                     <Image src="/xlogobg.png" alt="X profile" width={50} height={50} className="bg-white rounded-full p-2" />
-                                </a>
-                                <a
+                                </Link>
+
+                                <Link
+
                                     href="/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -134,7 +138,8 @@ export default function Contact() {
                                 >
                                     <Image src="/linkedinlogo.png" alt="LinkedIn profile" width={50} height={50} className="bg-white rounded-full " />
 
-                                </a>
+                                </Link>
+
                             </div>
                         </div>
                         {/* Footer/Credit */}

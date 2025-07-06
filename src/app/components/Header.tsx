@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -139,13 +140,13 @@ export default function Header() {
             <ul className="flex flex-col items-center gap-4 text-lg font-medium pt-4">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="block py-2 px-4 rounded-md hover:bg-cyan-500/20 transition"
                     onClick={handleNavClick(item.href)}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
