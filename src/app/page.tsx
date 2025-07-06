@@ -10,7 +10,7 @@ export default function Home() {
     <div className="portfolio-wrapper relative overflow-hidden">
 
       {/* 🚫 Mobile Under Development Overlay */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white flex flex-col items-center justify-center z-50 md:hidden">
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white flex flex-col items-center justify-center z-50 lg:hidden">
         <div className="absolute top-[-5rem] left-[-5rem] w-[300px] h-[300px] bg-purple-500 opacity-30 rounded-full blur-3xl animate-float animation-delay-2000 pointer-events-none z-0" />
         <div className="absolute bottom-[-5rem] right-[-5rem] w-[300px] h-[300px] bg-pink-500 opacity-30 rounded-full blur-2xl animate-float animation-delay-4000 pointer-events-none z-0" />
 
@@ -22,7 +22,7 @@ export default function Home() {
       </div>
 
       {/* 🌐 Main Site – Hidden on Mobile */}
-      <div className="hidden md:block relative z-10">
+      <div className="hidden lg:block relative z-10">
         <Hero />
         <EducationHero />
         <Skills />

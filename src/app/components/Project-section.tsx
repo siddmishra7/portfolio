@@ -21,17 +21,17 @@ export default function Projects() {
             {
               title: 'Portfolio Website',
               desc: 'Sleek and modern personal website built using React and Next.js with custom animations and responsive design.',
-              link: 'https://github.com/yourusername/portfolio',
+              link: 'https://github.com/siddmishra7',
             },
             {
               title: 'Task Manager App',
               desc: 'Fully featured productivity tool with drag & drop, notifications, and task tracking. Built with React and Firebase.',
-              link: 'https://github.com/yourusername/task-manager',
+              link: 'https://github.com/siddmishra7',
             },
             {
               title: 'Weather Dashboard',
               desc: 'Dynamic dashboard fetching live weather data with animated backgrounds and location-based UI.',
-              link: 'https://github.com/yourusername/weather-dashboard',
+              link: 'https://github.com/siddmishra7',
             },
           ].map((project, index) => (
             <div key={index} className="project-card">
