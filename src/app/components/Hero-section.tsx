@@ -48,11 +48,11 @@ export default function Hero() {
                     </p>
 
                     <motion.a
-                        href="#projects"
+                        href="/"
                         whileHover={{ scale: 1.05 }}
                         className="mt-8 inline-block px-8 py-3 bg-purple-600 hover:bg-pink-600 text-white rounded-lg font-semibold shadow-lg  transition duration-200"
                     >
-                        Explore My Work
+                        Download Resume
                     </motion.a>
                 </motion.div>
 
