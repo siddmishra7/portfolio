@@ -87,7 +87,7 @@ export default function Header() {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
         >
-          <a href="/">SIDDHARTH MISHRA</a>
+          <Link href="/">SIDDHARTH MISHRA</Link>
         </motion.h1>
 
         {/* Desktop Nav */}
