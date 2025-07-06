@@ -1,6 +1,6 @@
 "use client";
 
-import { BanIcon, CircleCheck, Heart } from "lucide-react";
+import { BanIcon, CircleCheck, Heart, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import FloatingBlobs from "./Blobs";
@@ -13,6 +13,8 @@ export default function Contact() {
         message: "",
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const [notification, setNotification] = useState<{
         message: string;
         type: "success" | "error";
@@ -23,25 +25,36 @@ export default function Contact() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+        setIsSubmitting(true); // Start loading
+
         try {
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
+
             const json = await res.json();
+
             if (res.ok) {
-                setNotification({ message: `Message sent successfully. Thanks for contacting ${formData.name}`, type: "success" });
-                setFormData({ name: "", email: "", message: "" });
+                setNotification({
+                    message: `Message sent successfully. Thanks for contacting ${formData.name}`,
+                    type: 'success',
+                });
+                setFormData({ name: '', email: '', message: '' });
             } else {
-                setNotification({ message: json.message || "Something went wrong.", type: "error" });
+                setNotification({ message: json.message || 'Something went wrong.', type: 'error' });
             }
         } catch {
-            setNotification({ message: "Network error. Please try again later.", type: "error" });
+            setNotification({ message: 'Network error. Please try again later.', type: 'error' });
+        } finally {
+            setIsSubmitting(false); // Stop loading
         }
     }
+
 
     // Auto-hide notification after 4 seconds
     useEffect(() => {
@@ -50,6 +63,8 @@ export default function Contact() {
             return () => clearTimeout(timer);
         }
     }, [notification]);
+
+
 
     return (
         <section
@@ -206,9 +221,17 @@ export default function Contact() {
 
                     <button
                         type="submit"
-                        className="w-full py-3 bg-purple-500 hover:bg-purple-700 rounded-lg font-semibold text-white transition cursor-pointer"
+                        disabled={isSubmitting}
+                        className="w-full py-3 bg-purple-500 hover:bg-purple-700 rounded-lg font-semibold text-white transition flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                        Send Message
+                        {isSubmitting ? (
+                            <>
+                                <Loader2 className="animate-spin h-5 w-5" />
+                                Sending...
+                            </>
+                        ) : (
+                            'Send Message'
+                        )}
                     </button>
                 </form>
 
