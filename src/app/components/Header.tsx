@@ -43,24 +43,30 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setMenuOpen(false);
+const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.preventDefault();
+  setMenuOpen(false);
 
-    setTimeout(() => {
-      const id = href.replace('#', '');
-      const targetElement = document.getElementById(id);
-      if (targetElement) {
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition ;
+  setTimeout(() => {
+    const id = href.replace('#', '');
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
-      }
-    }, 150); // allow mobile nav to close smoothly
-  };
+      // Smooth scroll
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth',
+      });
+
+      // Update URL hash after short delay to ensure scroll starts
+      setTimeout(() => {
+        history.pushState(null, '', href); // This sets the #hash in the URL without jumping
+      }, 400); // adjust timing based on scroll duration
+    }
+  }, 150); // allows menu close animation to finish
+};
+
 
   useEffect(() => {
     if (menuOpen) {

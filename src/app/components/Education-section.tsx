@@ -10,7 +10,7 @@ export default function EducationHero() {
         <div className="education-cards">
           <div className="education-card pink">
             <h3>Bachelor of Technology in Robotics and Artificial Intelligence</h3>
-            <p className="school">MDU University, 2024 - 2028</p>
+            <p className="school">MD University, 2024 - 2028</p>
             <p>
              Pursuing Bachelor of Technology in Robotics and AI, focusing on intelligent systems, automation, and machine learning.
             </p>
