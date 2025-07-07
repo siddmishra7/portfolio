@@ -1,21 +1,52 @@
-import Contact from "./components/Contact-section";
-import EducationHero from "./components/Education-section";
-import Hero from "./components/Hero-section";
-import Projects from "./components/Project-section";
-import RatingModal from "./components/Rating-modal";
-import Skills from "./components/Skills-section";
+'use client';
+
+import { useEffect, useRef } from 'react';
+import Contact from './components/Contact-section';
+import EducationHero from './components/Education-section';
+import Header from './components/Header';
+import Hero from './components/Hero-section';
+import Projects from './components/Project-section';
+import RatingModal from './components/Rating-modal';
+import Skills from './components/Skills-section';
 
 export default function Home() {
+  const orbRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const orb = orbRef.current;
+    if (!orb) return;
+
+    const moveOrb = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      orb.animate(
+        {
+          transform: `translate(${clientX - 150}px, ${clientY - 150}px)`,
+        },
+        {
+          duration: 400,
+          fill: 'forwards',
+          easing: 'ease-out',
+        }
+      );
+    };
+
+    document.addEventListener('mousemove', moveOrb);
+    return () => document.removeEventListener('mousemove', moveOrb);
+  }, []);
+
   return (
     <div className="portfolio-wrapper relative overflow-hidden">
+      {/* 🎨 Vibrant Fluid Cursor Orb */}
+      <div
+        ref={orbRef}
+        className="pointer-events-none fixed top-0 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-pink-500 via-violet-600 to-cyan-400 opacity-30 blur-3xl mix-blend-screen z-0"
+      />
 
       {/* 🚫 Mobile Under Development Overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-white flex flex-col items-center justify-center z-50 lg:hidden animate-fadeIn">
-        {/* Floating Animated Blobs */}
-        <div className="absolute top-[-5rem] left-[-5rem] w-[300px] h-[300px] bg-purple-500 opacity-30 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite] pointer-events-none z-0" />
-        <div className="absolute bottom-[-5rem] right-[-5rem] w-[300px] h-[300px] bg-pink-500 opacity-30 rounded-full blur-2xl animate-[float_7s_ease-in-out_infinite] pointer-events-none z-0" />
+        <div className="absolute top-[-5rem] left-[-5rem] w-[300px] h-[300px] bg-purple-500 opacity-30 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[-5rem] right-[-5rem] w-[300px] h-[300px] bg-pink-500 opacity-30 rounded-full blur-2xl animate-[float_7s_ease-in-out_infinite]" />
 
-        {/* Glass Panel with Glow and Border */}
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 m-1 shadow-2xl rounded-2xl px-8 py-10 text-center max-w-sm z-10 animate-[slideUp_0.8s_ease-out_forwards]">
           <div className="text-4xl mb-4 animate-pulse">🚧</div>
           <h1 className="text-2xl font-bold mb-3">Under Development</h1>
@@ -29,17 +60,17 @@ export default function Home() {
         </div>
       </div>
 
-
       {/* 🌐 Main Site – Hidden on Mobile */}
       <div className="hidden lg:block relative z-10">
+        <Header />
         <Hero />
         <EducationHero />
         <Skills />
         <Projects />
         <Contact />
-      </div>
-      {/* Rating modal always rendered */}
+
       <RatingModal />
+      </div>
     </div>
   );
 }
