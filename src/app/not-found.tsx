@@ -2,7 +2,6 @@
 
 
 import Link from 'next/link';
-import Head from 'next/head';
 import FloatingBlobs from './components/Blobs';
 
 export default function Custom404() {
