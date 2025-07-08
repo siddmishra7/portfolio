@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import FloatingBlobs from './Blobs';
 
-// Replace with your real image paths
 const logos: Record<string, string> = {
   JavaScript: '/javascript.png',
   'React.js': '/react.png',
@@ -35,7 +34,7 @@ export default function Skills() {
   return (
     <>
       <section id="skills" className={`skills-section ${animate ? 'animate' : ''}`}>
-<FloatingBlobs />
+        <FloatingBlobs />
         <h2 className="skills-title">Skills</h2>
 
         {[{ title: 'Core Skills', items: coreSkills }, { title: 'Currently Learning', items: learningSkills }].map((group) => (
@@ -63,33 +62,34 @@ export default function Skills() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 3rem 1.25rem;
+          padding: 4rem 1.25rem;
           text-align: center;
           position: relative;
         }
 
         .skills-title {
-          font-size: 3rem;
+          font-size: clamp(2.2rem, 6vw, 3.5rem);
           font-weight: 900;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
           text-shadow: 0 0 15px rgba(255,255,255,0.2);
           opacity: 0;
           transform: translateY(-20px);
           transition: all 0.6s ease-out;
         }
+
         .animate .skills-title {
           opacity: 1;
           transform: translateY(0);
         }
 
         .skills-category {
-          margin-top: 2rem;
+          margin-top: 2.5rem;
           width: 100%;
           max-width: 1000px;
         }
 
         .category-title {
-          font-size: 1.85rem;
+          font-size: clamp(1.4rem, 4.5vw, 2rem);
           font-weight: 700;
           margin-bottom: 1.5rem;
           color: #00f3ff;
@@ -99,7 +99,7 @@ export default function Skills() {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          gap: 2rem;
+          gap: 1.5rem;
           opacity: 0;
           transform: translateY(40px);
           transition: all 1s ease;
@@ -112,8 +112,8 @@ export default function Skills() {
 
         .skill-card {
           position: relative;
-          width: 260px;
-          height: 140px;
+          width: clamp(140px, 42vw, 240px);
+          height: clamp(90px, 20vw, 140px);
           border: 3px solid;
           border-radius: 1.5rem;
           background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
@@ -123,7 +123,7 @@ export default function Skills() {
           justify-content: center;
           flex-direction: column;
           font-weight: 700;
-          font-size: 1.2rem;
+          font-size: clamp(0.9rem, 2.5vw, 1.2rem);
           color: #ffffff;
           transition: transform 0.4s ease, box-shadow 0.4s ease;
           overflow: hidden;
@@ -136,8 +136,8 @@ export default function Skills() {
         }
 
         .skill-logo {
-          width: 44px;
-          height: 44px;
+          width: clamp(32px, 6vw, 44px);
+          height: clamp(32px, 6vw, 44px);
           margin-bottom: 0.75rem;
           filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
         }
@@ -159,47 +159,12 @@ export default function Skills() {
           opacity: 0.15;
         }
 
-        @media (max-width: 1024px) {
-          .skill-card {
-            width: 220px;
-            height: 120px;
-            font-size: 1.1rem;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .skills-title {
-            font-size: 2.4rem;
-          }
-          .category-title {
-            font-size: 1.5rem;
-          }
-          .skill-card {
-            width: 180px;
-            height: 100px;
-            font-size: 1rem;
-          }
-          .skill-logo {
-            width: 38px;
-            height: 38px;
-          }
-        }
-
         @media (max-width: 480px) {
-          .skills-title {
-            font-size: 2rem;
+          .skills-section {
+            padding: 3rem 1rem;
           }
           .skills-cards {
             gap: 1.2rem;
-          }
-          .skill-card {
-            width: 150px;
-            height: 90px;
-            font-size: 0.9rem;
-          }
-          .skill-logo {
-            width: 32px;
-            height: 32px;
           }
         }
       `}</style>
