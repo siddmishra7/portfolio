@@ -13,7 +13,7 @@ export default function Projects() {
   return (
     <>
       <section id="projects" className={`projects-section ${animate ? 'animate' : ''}`}>
-<FloatingBlobs />
+        <FloatingBlobs />
         <h2 className="projects-title">Projects</h2>
 
         <div className="projects-cards">
@@ -49,7 +49,7 @@ export default function Projects() {
 
       <style>{`
         .projects-section {
-          height: 100vh;
+          min-height: 100vh;
           background:-transparent;
           color: #e0e0ff;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -185,12 +185,18 @@ export default function Projects() {
         }
 
         @media (max-width: 768px) {
+         .projects-section {
+           padding: 4rem 1rem;
+         }
           .projects-title {
             font-size: 2.5rem;
           }
         }
 
         @media (max-width: 500px) {
+        .projects-section {
+           padding: 4rem 1rem;
+         }
           .project-card {
             padding: 1.75rem;
           }

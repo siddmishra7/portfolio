@@ -113,7 +113,7 @@ export default function Skills() {
         .skill-card {
           position: relative;
           width: clamp(140px, 42vw, 240px);
-          height: clamp(90px, 20vw, 140px);
+          height: clamp(100px, 24vw, 140px);
           border: 3px solid;
           border-radius: 1.5rem;
           background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
@@ -161,10 +161,22 @@ export default function Skills() {
 
         @media (max-width: 480px) {
           .skills-section {
-            padding: 3rem 1rem;
+            padding: 5rem 1rem;
           }
+
+           .skills-title {
+          
+          margin-bottom: 0rem;
+          
+        }
+
           .skills-cards {
-            gap: 1.2rem;
+            gap: 1rem;
+          }
+
+          .skill-card {
+            width: 100%;
+            max-width: 280px;
           }
         }
       `}</style>

@@ -141,7 +141,7 @@ const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/30 backdrop-blur-md px-6 pb-6 text-white shadow-xl"
+            className="md:hidden backdrop-blur-lg bg-white/ shadow-md px-6 pb-6 text-white"
           >
             <ul className="flex flex-col items-center gap-4 text-lg font-medium pt-4">
               {navItems.map((item) => (

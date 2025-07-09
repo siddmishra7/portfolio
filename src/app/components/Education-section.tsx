@@ -139,6 +139,9 @@ export default function EducationHero() {
         }
 
         @media (max-width: 600px) {
+         .education-hero {
+          padding: 4rem 2rem;
+        }
           .education-cards {
             flex-direction: column;
             align-items: center;
