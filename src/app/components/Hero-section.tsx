@@ -25,7 +25,8 @@ export default function Hero() {
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight ">
                         Hello, I&apos;m
                         <br />
-                        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent whitespace-nowrap">
+                        <div className="">
+                        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent whitespace-nowrap ">
                             <Typewriter
                                 words={['Siddharth Mishra', 'a Web Developer', 'a Designer']}
                                 loop={true}
@@ -36,14 +37,26 @@ export default function Hero() {
                                 delaySpeed={1500}
                             />
                         </span>
+                        </div>
                     </h1>
 
 
-                    <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-300">
+                    <p className="mt-6 hidden lg:block text-base sm:text-lg md:text-xl text-gray-300">
                         I craft responsive websites and immersive digital experiences.<br />
                         Passionate about <span className="text-cyan-400 font-semibold">Computer Science</span> & innovation.
                         Always eager to learn new technologies and solve real-world problems.
                         I specialize in building fast, modern, and accessible web applications.<br />
+                        Let’s create something <span className="text-pink-400 font-semibold">amazing</span> together.
+                    </p>
+
+                    <p className="mt-6 block md:hidden text-base sm:text-lg md:text-xl text-gray-300">
+                      I craft responsive websites and immersive digital experiences.
+                        <br />
+                        Passionate about <span className="text-cyan-400 font-semibold">Computer Science</span> & innovation.
+                        Always eager to learn new technologies and solve real-world problems.
+                        <br />
+                        I specialize in building fast, modern, and accessible web applications.
+                        <br />
                         Let’s create something <span className="text-pink-400 font-semibold">amazing</span> together.
                     </p>
 

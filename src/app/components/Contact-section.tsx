@@ -39,7 +39,7 @@ export default function Contact() {
 
       if (res.ok) {
         setNotification({
-          message: `Message sent successfully. Thanks for contacting ${formData.name}`,
+          message: `Thanks for reaching out, ${formData.name}! sYour message has been sent successfully.`,
           type: "success",
         });
         setFormData({ name: "", email: "", message: "" });
@@ -73,19 +73,23 @@ export default function Contact() {
     >
       <FloatingBlobs />
 
-      {/* Notification Banner */}
-      {notification && (
-        <div
-          className={`fixed flex gap-2 top-24 left-1/2 -translate-x-1/2 px-6 py-3 rounded shadow-lg text-white font-semibold z-50
-            ${
-              notification.type === "success" ? "bg-green-600" : "bg-red-600"
-            }`}
-          role="alert"
-        >
-          {notification.type === "success" ? <CircleCheck /> : <BanIcon />}{" "}
-          {notification.message}
-        </div>
-      )}
+     {/* Notification Banner */}
+{notification && (
+  <div
+    className={`
+      fixed top-24 left-1/2 -translate-x-1/2 
+      max-w-[90%] sm:max-w-md w-full px-4 py-3 
+      flex items-center gap-2 rounded-md shadow-lg 
+      text-white text-sm sm:text-base font-medium z-50
+      ${notification.type === "success" ? "bg-green-600" : "bg-red-600"}
+      animate-slideIn
+    `}
+    role="alert"
+  >
+    {notification.type === "success" ? <CircleCheck /> : <BanIcon />}
+    <span className="flex-1 break-words">{notification.message}</span>
+  </div>
+)}
 
       <h2 className="text-4xl font-extrabold text-center mb-10 drop-shadow-lg">
         Get In Touch
