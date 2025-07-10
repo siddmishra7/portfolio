@@ -43,29 +43,29 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.preventDefault();
-  setMenuOpen(false);
+  const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMenuOpen(false);
 
-  setTimeout(() => {
-    const id = href.replace('#', '');
-    const targetElement = document.getElementById(id);
-    if (targetElement) {
-      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+    setTimeout(() => {
+      const id = href.replace('#', '');
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
 
-      // Smooth scroll
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth',
-      });
+        // Smooth scroll
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        });
 
-      // Update URL hash after short delay to ensure scroll starts
-      setTimeout(() => {
-        history.pushState(null, '', href); // This sets the #hash in the URL without jumping
-      }, 400); // adjust timing based on scroll duration
-    }
-  }, 150); // allows menu close animation to finish
-};
+        // Update URL hash after short delay to ensure scroll starts
+        setTimeout(() => {
+          history.pushState(null, '', href); // This sets the #hash in the URL without jumping
+        }, 400); // adjust timing based on scroll duration
+      }
+    }, 150); // allows menu close animation to finish
+  };
 
 
   useEffect(() => {
@@ -141,14 +141,17 @@ const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden backdrop-blur-lg bg-white/ shadow-md px-6 pb-6 text-white"
+            className="md:hidden backdrop-blur-l shadow-md px-6 pb-6 text-white"
           >
             <ul className="flex flex-col items-center gap-4 text-lg font-medium pt-4">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block py-2 px-4 rounded-md hover:bg-cyan-500/20 transition"
+                    className={clsx(
+                      'block py-2 px-4 rounded-md hover:bg-cyan-500/20 transition',
+                      activeSection === item.href && 'text-cyan-400'
+                    )}
                     onClick={handleNavClick(item.href)}
                   >
                     {item.label}

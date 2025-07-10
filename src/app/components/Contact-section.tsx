@@ -39,7 +39,7 @@ export default function Contact() {
 
       if (res.ok) {
         setNotification({
-          message: `Thanks for reaching out, ${formData.name}! sYour message has been sent successfully.`,
+          message: `Thanks for reaching out, ${formData.name}! Your message has been sent successfully.`,
           type: "success",
         });
         setFormData({ name: "", email: "", message: "" });
@@ -174,7 +174,7 @@ export default function Contact() {
             <div>
               <strong>Phone:</strong>{" "}
               <Link
-                href="tel:+1234567890"
+                href="tel:+9899321545"
                 className="text-cyan-300 hover:underline"
               >
                 +91 98993 21545
