@@ -70,7 +70,7 @@ export default function Hero() {
                         alt="Siddharth Mishra"
                         width={300}
                         height={300}
-                        className="rounded-full border-4 border-cyan-400 shadow-xl object-cover float-animation w-[220px] sm:w-[180px] md:w-[240px] lg:w-[300px] h-auto"
+                        className="rounded-full border-4 border-cyan-400 shadow-xl object-cover float-animation w-[220px] sm:w-[180px] md:w-[240px] lg:w-[300px] h-auto mt-6 md:mt-0"
                     />
                 </motion.div>
             </div>
