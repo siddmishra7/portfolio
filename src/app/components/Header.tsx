@@ -106,7 +106,21 @@ export default function Header() {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
         >
-          <Link href="/">SIDDHARTH MISHRA</Link>
+          <Link
+            href="/"
+            className="relative font-extrabold text-xl md:text-2xl text-white transition duration-300 group"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = '/';
+            }}
+          >
+            <span className="transition duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:via-cyan-300 group-hover:to-cyan-600">
+              SIDDHARTH MISHRA
+            </span>
+            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-pink-500 via-violet-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></span>
+          </Link>
+
+
         </motion.h1>
 
         {/* Desktop Nav */}
