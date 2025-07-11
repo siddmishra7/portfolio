@@ -14,38 +14,54 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
+// Track user interaction globally
+let hasUserInteracted = false;
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-
   useEffect(() => {
     const handleScroll = () => {
+      // Skip if user hasn't interacted and at top
+      if (!hasUserInteracted && window.scrollY === 0) return;
+
+      hasUserInteracted = true;
       setIsScrolled(window.scrollY > 30);
 
-      const scrollPos = window.scrollY + window.innerHeight / 3;
-      let currentSection: string | null = null;
+      const sections = navItems.map((item) => {
+        const el = document.querySelector(item.href);
+        if (!el) return null;
+        return {
+          id: item.href,
+          offsetTop: (el as HTMLElement).offsetTop,
+          offsetHeight: (el as HTMLElement).offsetHeight,
+        };
+      }).filter(Boolean) as { id: string; offsetTop: number; offsetHeight: number }[];
 
-      for (const item of navItems) {
-        const section = document.querySelector(item.href);
-        if (section) {
-          const offsetTop = (section as HTMLElement).offsetTop;
-          if (scrollPos >= offsetTop) currentSection = item.href;
+      const scrollY = window.scrollY + window.innerHeight / 2;
+
+      let current: string | null = null;
+      for (const section of sections) {
+        if (scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
+          current = section.id;
+          break;
         }
       }
 
-      setActiveSection(currentSection);
+      setActiveSection(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setMenuOpen(false);
+    hasUserInteracted = true;
 
     setTimeout(() => {
       const id = href.replace('#', '');
@@ -53,20 +69,17 @@ export default function Header() {
       if (targetElement) {
         const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
 
-        // Smooth scroll
         window.scrollTo({
           top: elementPosition,
           behavior: 'smooth',
         });
 
-        // Update URL hash after short delay to ensure scroll starts
         setTimeout(() => {
-          history.pushState(null, '', href); // This sets the #hash in the URL without jumping
-        }, 400); // adjust timing based on scroll duration
+          history.pushState(null, '', href);
+        }, 400);
       }
-    }, 150); // allows menu close animation to finish
+    }, 150);
   };
-
 
   useEffect(() => {
     if (menuOpen) {
