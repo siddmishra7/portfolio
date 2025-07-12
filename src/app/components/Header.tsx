@@ -114,7 +114,7 @@ export default function Header() {
               window.location.href = '/';
             }}
           >
-            <span className="transition duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:via-cyan-300 group-hover:to-cyan-600">
+            <span className="transition duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#21b4fe] group-hover:via-[#c0a0f7] group-hover:to-[#f77985]">
               SIDDHARTH MISHRA
             </span>
             <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-pink-500 via-violet-500 to-cyan-400 transition-all duration-500 group-hover:w-full"></span>

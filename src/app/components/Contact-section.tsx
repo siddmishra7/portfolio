@@ -174,7 +174,7 @@ export default function Contact() {
             <div>
               <strong>Phone:</strong>{" "}
               <Link
-                href="tel:+9899321545"
+                href="tel:9899321545"
                 className="text-cyan-300 hover:underline"
               >
                 +91 98993 21545

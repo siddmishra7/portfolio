@@ -8,6 +8,7 @@ import Hero from './components/Hero-section';
 import Projects from './components/Project-section';
 import RatingModal from './components/Rating-modal';
 import Skills from './components/Skills-section';
+import AnimatedSection from './components/AnimationSection';
 
 export default function Home() {
   const orbRef = useRef<HTMLDivElement>(null);
@@ -36,23 +37,21 @@ export default function Home() {
 
   return (
     <div className="portfolio-wrapper relative overflow-hidden">
-      {/* 🎨 Vibrant Fluid Cursor Orb */}
       <div
         ref={orbRef}
         className="pointer-events-none fixed top-0 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-pink-500 via-violet-600 to-cyan-400 opacity-30 blur-3xl mix-blend-screen z-0"
       />
 
-
-      {/* 🌐 Main Site – Hidden on Mobile */}
       <div className="block relative z-10">
         <Header />
-        <Hero />
-        <EducationHero />
-        <Skills />
-        <Projects />
-        <Contact />
 
-      <RatingModal />
+         <Hero />
+        <AnimatedSection animation="slide-right"><EducationHero /></AnimatedSection>
+        <AnimatedSection animation="zoom"><Skills /></AnimatedSection>
+        <AnimatedSection animation="slide-up"><Projects /></AnimatedSection>
+        <AnimatedSection animation="slide-left"><Contact /></AnimatedSection>
+
+        <RatingModal />
       </div>
     </div>
   );
