@@ -1,4 +1,3 @@
-// components/AnimatedSection.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -7,11 +6,13 @@ import clsx from 'clsx';
 interface AnimatedSectionProps {
   children: React.ReactNode;
   animation?: 'slide-left' | 'slide-right' | 'slide-up' | 'zoom';
+  mobileAnimation?: boolean; // new optional prop
 }
 
 export default function AnimatedSection({
   children,
   animation = 'slide-up',
+  mobileAnimation = false,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -20,6 +21,13 @@ export default function AnimatedSection({
     const el = ref.current;
     if (!el) return;
 
+    // ✅ Skip animation on mobile if mobileAnimation is false
+    const isMobile = window.innerWidth < 640;
+    if (isMobile && !mobileAnimation) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -27,12 +35,12 @@ export default function AnimatedSection({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 } // Lower threshold for better mobile trigger
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [mobileAnimation]);
 
   const animationClasses = {
     'slide-up': isVisible
@@ -53,7 +61,7 @@ export default function AnimatedSection({
     <div
       ref={ref}
       className={clsx(
-        'transition-all duration-1000 ease-out will-change-transform',
+        'transition-all duration-700 ease-out will-change-transform',
         animationClasses[animation]
       )}
     >
